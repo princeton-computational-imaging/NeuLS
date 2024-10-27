@@ -1,5 +1,5 @@
 
-# Neural Spline Fields for Burst Image Fusion and Layer Separation
+# Neural Light Spheres for Implicit Image Stitching and View Synthesis
 <a href="https://colab.research.google.com/github/princeton-computational-imaging/NeuLS/blob/main/tutorial.ipynb" style="text-decoration: none;">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="height:20px;"/>
 </a>
