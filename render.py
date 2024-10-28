@@ -66,7 +66,7 @@ class InteractiveWindow:
             self.camera_to_world = utils.convert_quaternions_to_rot(self.quaternion_camera_to_world_offset).repeat(self.width * self.height, 1, 1).to("cuda")
             self.ray_directions = model.generate_ray_directions(self.uv * self.fov_factor + 0.5 * (1 - self.fov_factor), self.camera_to_world, self.intrinsics_inv)
             
-        rgb_transmission = model.inference(self.t_tensor, self.uv * self.fov_factor + 0.5 * (1 - self.fov_factor), self.ray_origins + self.offset, self.ray_directions, 1.0)[0]
+        rgb_transmission = model.inference(self.t_tensor, self.uv * self.fov_factor + 0.5 * (1 - self.fov_factor), self.ray_origins + self.offset, self.ray_directions, 1.0)
 
         rgb_transmission = model.color(rgb_transmission, self.height, self.width).permute(2, 1, 0)
         return (rgb_transmission ** 0.7 * 255 * self.brightness).clamp(0, 255).byte().cpu().numpy()
