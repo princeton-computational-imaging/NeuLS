@@ -138,10 +138,9 @@ class BundleDataset(Dataset):
         u,v = uv.unbind(-1)
 
         t = torch.zeros_like(uv[:,0:1])
-        if self.args.rolling_shutter:
-            for frame in range(self.num_frames):
-                # use row to index into row_timestamps
-                t[frame * self.frame_batch_size:(frame + 1) * self.frame_batch_size,0] = self.row_timestamps[frame, v[frame * self.frame_batch_size:(frame + 1) * self.frame_batch_size].long()]
+        for frame in range(self.num_frames):
+            # use row to index into row_timestamps
+            t[frame * self.frame_batch_size:(frame + 1) * self.frame_batch_size,0] = self.row_timestamps[frame, v[frame * self.frame_batch_size:(frame + 1) * self.frame_batch_size].long()]
 
         uv = uv / torch.tensor([[self.img_width-1, self.img_height-1]]) # scale back to 0-1
         
