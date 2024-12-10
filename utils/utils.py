@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
+plt.switch_backend('Agg') # non-visual
 
 def interp(x, xp, fp):
     """
@@ -250,11 +251,12 @@ def colorize_tensor(value, vmin=None, vmax=None, cmap=None, colorbar=False, heig
         cbar = plt.colorbar(a, fraction=0.05)
         cbar.ax.tick_params(labelsize=30)
     plt.tight_layout()
-    plt.close()
 
     # Convert figure to numpy array
     fig.canvas.draw()
     img = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
     img = img.reshape(fig.canvas.get_width_height()[::-1] + (3,))
     img = img / 255.0
+
+    plt.close(fig)
     return torch.tensor(img).permute(2, 0, 1).float()
