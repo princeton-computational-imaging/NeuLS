@@ -5,5 +5,5 @@ matplotlib==3.7.0
 numpy==1.24.3
 Pillow==11.0.0
 pygame==2.6.0
-pytorch_lightning==2.0.1
+pytorch_lightning==2.4.0
 torch==2.2.1
